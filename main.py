@@ -20,6 +20,8 @@ PRODUCT_URLS = {
 
 #Discord Webhook URL
 WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
+SLEEP_TIME = int(os.getenv("SLEEP_TIME", "900"))
+
 
 def check_stock():
     try:
@@ -52,4 +54,8 @@ def check_stock():
         print(f"Error checking stock: {e}")
 
 if __name__ == "__main__":
-    check_stock()
+    print("Starting AV Stock Monitor...")
+    while True:
+        check_stock()
+        print("Sleeping...")
+        time.sleep(SLEEP_TIME)
