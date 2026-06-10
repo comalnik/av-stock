@@ -18,9 +18,8 @@ PRODUCT_URLS = {
     "Estradiol Enanthate (Castor)": "https://astrovials.com/product/estradiol-enanthate-castor/"
 }
 
-# Your Discord Webhook URL
+#Discord Webhook URL
 WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
-#WEBHOOK_URL = None
 
 def check_stock():
     try:
@@ -38,12 +37,12 @@ def check_stock():
             else:
                 print(f"{name}: IN STOCK! 🟢")
                 
-                # Send Discord notification for this product
+                # Send Discord notification
                 if WEBHOOK_URL:
                     embed = DiscordEmbed(
                         title="Astrovials Stock Alert",
-                        description=f"**{name} is back in stock!**\n[Order here](https://astrovials.com)",
-                        color=4360017  # Green color
+                        description=f"**{name} is back in stock!**\n[Order here]({url})",
+                        color=0xF5A9B8 
                     )
                     
                     webhook = DiscordWebhook(url=WEBHOOK_URL, embeds=[embed])
